@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class Screening {
 
+    private long id;
     private String movieTitle;
     private Date startTime;
     private Date endTime;
