@@ -8,16 +8,26 @@ package domain;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Tomt
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "Rating.getAll", query = "SELECT r FROM Rating r"),
+@NamedQuery(name = "Rating.find", query = "SELECT r FROM Rating r WHERE r.id = :id")
+})
 public class Rating {
     @Id
     private long id;
+    @OneToOne
     private Movie movie;
+    @ManyToMany
     private List<User> ratedBy;
     private int currentRank;
 

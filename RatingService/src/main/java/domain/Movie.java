@@ -7,15 +7,24 @@ package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Tomt
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "Movie.getAll", query = "SELECT m FROM Movie m"),
+@NamedQuery(name = "Movie.find", query = "SELECT m FROM Movie m WHERE m.title = :title")
+})
 public class Movie {
+
     @Id
     private String title;
+    @OneToOne
     private Rating rating;
 
     public Movie(String title, Rating rating) {
@@ -38,5 +47,5 @@ public class Movie {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-    
+
 }
