@@ -22,4 +22,65 @@ public class Screening {
     private Date endTime;
     private double price;
     private List<Seat> seats;
+
+    public Screening() {
+    }
+
+    public Screening(long id, String movieTitle, Date startTime, Date endTime, double price, List<Seat> seats) {
+        this.id = id;
+        this.movieTitle = movieTitle;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.price = price;
+        this.seats = seats;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
 }

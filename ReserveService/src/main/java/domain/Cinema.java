@@ -19,4 +19,36 @@ public class Cinema {
     private String adress;
     private List<Screening> screening;
 
+    public Cinema(String name, String adress, List<Screening> screening) {
+        this.name = name;
+        this.adress = adress;
+        this.screening = screening;
+    }
+
+    public Cinema() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public List<Screening> getScreening() {
+        return screening;
+    }
+
+    public void setScreening(List<Screening> screening) {
+        this.screening = screening;
+    }
 }
