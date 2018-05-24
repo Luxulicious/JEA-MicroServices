@@ -6,6 +6,8 @@
 package service;
 
 import dao.MovieDao;
+import domain.Movie;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,4 +19,12 @@ import javax.inject.Inject;
 public class MovieService {
     @Inject
     private MovieDao movieDao;
+    
+    public List<Movie> getAll(){
+        return movieDao.getAll();
+    }
+    
+    public Movie find(String title){
+        return movieDao.find(title);
+    }
 }

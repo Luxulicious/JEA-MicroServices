@@ -20,7 +20,8 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries({
 @NamedQuery(name = "Rating.getAll", query = "SELECT r FROM Rating r"),
-@NamedQuery(name = "Rating.find", query = "SELECT r FROM Rating r WHERE r.id = :id")
+@NamedQuery(name = "Rating.find", query = "SELECT r FROM Rating r WHERE r.id = :id"),
+@NamedQuery(name = "Rating.findByMovie", query = "SELECT r FROM Rating r WHERE r.movie.title = :title")
 })
 public class Rating {
     @Id

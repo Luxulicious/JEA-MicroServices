@@ -6,6 +6,8 @@
 package service;
 
 import dao.UserDao;
+import domain.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,4 +19,12 @@ import javax.inject.Inject;
 public class UserService {
     @Inject
     private UserDao userDao;
+    
+    public List<User> getAll(){
+        return userDao.getAll();
+    }
+    
+    public User find(String email){
+        return userDao.find(email);
+    }
 }

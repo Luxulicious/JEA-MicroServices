@@ -6,6 +6,7 @@
 package dao;
 
 import domain.Rating;
+import domain.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,5 +39,16 @@ public class RatingDao {
     public Rating find(long id) {
         Query query = em.createNamedQuery("Rating.find");
         return (Rating) query.setParameter("id", id).getSingleResult();
+    }
+    
+    public Rating findByMovie(String title){
+        Query query = em.createNamedQuery("Rating.findByMovie");
+        return (Rating) query.setParameter("title", title).getSingleResult();
+    }
+    
+    public void likedMovie(Rating rating, User user){
+        rating.getRatedBy().add(user);
+        update(rating);
+        save(rating);
     }
 }
