@@ -28,23 +28,13 @@ public class User {
     private String name;
     @ManyToMany
     private List<Rating> allRatings;
-    private boolean liked;
 
-    public User(String email, String name, List<Rating> allRatings, boolean liked) {
+    public User(String email, String name, List<Rating> allRatings) {
         this.email = email;
         this.name = name;
         this.allRatings = allRatings;
-        this.liked = liked;
     }
-
-    public boolean isLiked() {
-        return liked;
-    }
-
-    public void setLiked(boolean liked) {
-        this.liked = liked;
-    }
-
+    
     public String getEmail() {
         return email;
     }
