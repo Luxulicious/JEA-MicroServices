@@ -24,10 +24,10 @@ public class ReservationService {
     @Inject
     private ReservationDAO reservationDAO;
 
-    public void reserve(Long screeningId, List<Integer> seatNumbers) throws Exception {
+    public void reserve(Long screeningId, List<Integer> seatNumbers, String reservedBy) throws Exception {
         checkAvailableScreening(screeningId);
         checkAvailableSeats(screeningId, seatNumbers);
-        reservationDAO.reserve(screeningId, seatNumbers);
+        reservationDAO.reserve(screeningId, seatNumbers, reservedBy);
     }
 
     public void markAsPayed(Long screeningId, List<Integer> seatNumbers) throws Exception {
@@ -48,14 +48,14 @@ public class ReservationService {
     }
 
     private void checkBeforePayment(Long screeningId, List<Integer> seatNumbers) throws Exception {
-        List<Seat> seats = reservationDAO.getScreeningSeats(screeningId, seatNumbers);
+        List<Seat> seats = reservationDAO.getScreeningSeats(screeningId);
         checkAnySeats(seats);
         checkDuplicateSeats(seatNumbers);
         checkNonExistantSeats(seatNumbers, seats);
     }
 
     private void checkAvailableSeats(Long screeningId, List<Integer> seatNumbers) throws Exception {
-        List<Seat> seats = reservationDAO.getScreeningSeats(screeningId, seatNumbers);
+        List<Seat> seats = reservationDAO.getScreeningSeats(screeningId);
         checkAnySeats(seats);
         checkDuplicateSeats(seatNumbers);
         checkNonExistantSeats(seatNumbers, seats);
