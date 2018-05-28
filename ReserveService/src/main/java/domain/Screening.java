@@ -29,8 +29,6 @@ public class Screening {
     private double price;
     @OneToMany(mappedBy = "screening")
     private List<Seat> seats;
-    @ManyToOne
-    private Cinema cinema;
 
     public Screening() {
     }
@@ -42,14 +40,6 @@ public class Screening {
         this.endTime = endTime;
         this.price = price;
         this.seats = seats;
-    }
-
-    public Cinema getCinema() {
-        return cinema;
-    }
-
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
     }
 
     public long getId() {
