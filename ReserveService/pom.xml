@@ -26,6 +26,7 @@
     <build>
         <plugins>
             
+            <!--
             <plugin>
                 <groupId>fish.payara.maven.plugins</groupId>
                 <artifactId>payara-micro-maven-plugin</artifactId>
@@ -38,6 +39,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
