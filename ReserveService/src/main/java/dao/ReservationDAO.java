@@ -8,6 +8,9 @@ package dao;
 import domain.Screening;
 import domain.Seat;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,22 +18,48 @@ import java.util.List;
  * @email
  * @version 0.0.1
  */
+@Stateless
 public class ReservationDAO {
 
+    @PersistenceContext
+    EntityManager em;
+
     public Screening getScreening(Long screeningId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(Screening.class, screeningId);
     }
 
-    public List<Seat> getScreeningSeats(Long screeningId, List<Integer> seatNumbers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Seat> getScreeningSeats(Long screeningId) {
+        Screening screening = em.find(Screening.class, screeningId);
+        return screening.getSeats();
     }
 
     public void markAsPayed(Long screeningId, List<Integer> seatNumbers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Screening screening = em.find(Screening.class, screeningId);
+        List<Seat> seats = screening.getSeats();
+        for (int i = 0; i < seats.size(); i++) {
+            for (int j = 0; j < 10; j++) {
+                if (seats.get(i).getSeatNumber() == seatNumbers.get(j)) {
+                    seats.get(i).setPayed(true);
+                }
+            }
+        }
+        screening.setSeats(seats);
+        em.merge(screening);
     }
 
-    public void reserve(Long screeningId, List<Integer> seatNumbers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void reserve(Long screeningId, List<Integer> seatNumbers, String reservedBy) {
+        Screening screening = em.find(Screening.class, screeningId);
+        List<Seat> seats = screening.getSeats();
+        for (int i = 0; i < seats.size(); i++) {
+            for (int j = 0; j < 10; j++) {
+                if (seats.get(i).getSeatNumber() == seatNumbers.get(j)) {
+                    seats.get(i).setReserved(true);
+                    seats.get(i).setReservedBy(reservedBy);
+                }
+            }
+        }
+        screening.setSeats(seats);
+        em.merge(screening);
     }
 
 }
