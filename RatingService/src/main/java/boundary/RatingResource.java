@@ -6,6 +6,7 @@
 package boundary;
 
 import com.google.gson.GsonBuilder;
+import domain.dto.RatingDTO;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -31,6 +32,6 @@ public class RatingResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Response getRating(@PathParam("id")long id){
-        return Response.ok(gson.create().toJson(ratingService.find(id))).build();
+        return Response.ok(gson.create().toJson(new RatingDTO(ratingService.find(id)))).build();
     }
 }
