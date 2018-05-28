@@ -6,6 +6,9 @@
 package domain;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -13,10 +16,14 @@ import java.util.List;
  * @email
  * @version 0.0.1
  */
+@Entity
 public class Cinema {
 
+    @Id
+    private Long id;
     private String name;
     private String adress;
+    @OneToMany(mappedBy = "screenings")
     private List<Screening> screening;
 
     public Cinema(String name, String adress, List<Screening> screening) {
@@ -50,5 +57,13 @@ public class Cinema {
 
     public void setScreening(List<Screening> screening) {
         this.screening = screening;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

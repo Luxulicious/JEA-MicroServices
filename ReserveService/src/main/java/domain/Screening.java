@@ -7,6 +7,9 @@ package domain;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -14,13 +17,16 @@ import java.util.List;
  * @email
  * @version 0.0.1
  */
+@Entity
 public class Screening {
 
+    @Id
     private long id;
     private String movieTitle;
     private Date startTime;
     private Date endTime;
     private double price;
+    @OneToMany(mappedBy = "seats")
     private List<Seat> seats;
 
     public Screening() {

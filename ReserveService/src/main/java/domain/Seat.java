@@ -5,15 +5,22 @@
  */
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author Tom
  * @email
  * @version 0.0.1
  */
+@Entity
 public class Seat {
 
+    @Id
     private long seatId;
+    @ManyToOne
     private Screening screening;
     private boolean reserved;
     private String reservedBy;
