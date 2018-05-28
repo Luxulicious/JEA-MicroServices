@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -26,8 +27,10 @@ public class Screening {
     private Date startTime;
     private Date endTime;
     private double price;
-    @OneToMany(mappedBy = "seats")
+    @OneToMany(mappedBy = "screening")
     private List<Seat> seats;
+    @ManyToOne
+    private Cinema cinema;
 
     public Screening() {
     }
@@ -39,6 +42,14 @@ public class Screening {
         this.endTime = endTime;
         this.price = price;
         this.seats = seats;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 
     public long getId() {

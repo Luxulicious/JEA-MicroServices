@@ -30,6 +30,14 @@ public class Seat {
     public Seat() {
     }
 
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
+    }
+
     public Seat(long seatId, boolean reserved, String reservedBy, boolean payed, int seatNumber) {
         this.seatId = seatId;
         this.reserved = reserved;

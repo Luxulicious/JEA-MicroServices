@@ -23,7 +23,7 @@ public class Cinema {
     private Long id;
     private String name;
     private String adress;
-    @OneToMany(mappedBy = "screenings")
+    @OneToMany(mappedBy = "cinema")
     private List<Screening> screening;
 
     public Cinema(String name, String adress, List<Screening> screening) {
