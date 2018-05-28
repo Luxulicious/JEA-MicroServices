@@ -27,6 +27,9 @@ public class Movie {
     @OneToOne
     private Rating rating;
 
+    public Movie() {
+    }
+
     public Movie(String title, Rating rating) {
         this.title = title;
         this.rating = rating;

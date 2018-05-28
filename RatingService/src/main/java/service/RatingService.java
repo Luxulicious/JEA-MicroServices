@@ -38,7 +38,7 @@ public class RatingService {
         return ratingDao.findByMovie(title);
     }
     
-    public void likedMovie(String movieTitle, String email) throws NonExistingRatingException, NonExistingUserException{
+    public void likeMovie(String movieTitle, String email) throws NonExistingRatingException, NonExistingUserException{
         Rating rating = ratingDao.findByMovie(movieTitle);
         if (rating == null){
             throw new NonExistingRatingException("Rating does not exist.");
@@ -49,6 +49,20 @@ public class RatingService {
         if (user == null){
             throw new NonExistingUserException("User does not exist.");
         }
-        ratingDao.likedMovie(rating, user);
+        ratingDao.likeMovie(rating, user);
+    }
+    
+    public void dislikeMovie(String movieTitle, String email) throws NonExistingRatingException, NonExistingUserException{
+        Rating rating = ratingDao.findByMovie(movieTitle);
+        if (rating == null){
+            throw new NonExistingRatingException("Rating does not exist.");
+        }
+        
+        User user = userService.find(email);
+        
+        if (user == null){
+            throw new NonExistingUserException("User does not exist.");
+        }
+        ratingDao.dislikeMovie(rating, user);
     }
 }

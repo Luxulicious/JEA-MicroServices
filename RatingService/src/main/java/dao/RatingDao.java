@@ -46,8 +46,14 @@ public class RatingDao {
         return (Rating) query.setParameter("title", title).getSingleResult();
     }
     
-    public void likedMovie(Rating rating, User user){
+    public void likeMovie(Rating rating, User user){
         rating.getRatedBy().add(user);
+        update(rating);
+        save(rating);
+    }
+    
+    public void dislikeMovie(Rating rating, User user){
+        rating.getRatedBy().remove(user);
         update(rating);
         save(rating);
     }

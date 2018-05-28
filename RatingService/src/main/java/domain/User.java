@@ -29,6 +29,9 @@ public class User {
     @ManyToMany
     private List<Rating> allRatings;
 
+    public User() {
+    }
+
     public User(String email, String name, List<Rating> allRatings) {
         this.email = email;
         this.name = name;

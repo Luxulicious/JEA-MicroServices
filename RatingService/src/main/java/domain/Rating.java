@@ -32,6 +32,9 @@ public class Rating {
     private List<User> ratedBy;
     private int currentRank;
 
+    public Rating() {
+    }
+
     public Rating(long id, Movie movie, List<User> ratedBy, int currentRank) {
         this.id = id;
         this.movie = movie;
