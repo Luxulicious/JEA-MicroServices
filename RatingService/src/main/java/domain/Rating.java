@@ -7,6 +7,8 @@ package domain;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -19,12 +21,14 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Rating.getAll", query = "SELECT r FROM Rating r"),
-@NamedQuery(name = "Rating.find", query = "SELECT r FROM Rating r WHERE r.id = :id"),
-@NamedQuery(name = "Rating.findByMovie", query = "SELECT r FROM Rating r WHERE r.movie.title = :title")
+    @NamedQuery(name = "Rating.getAll", query = "SELECT r FROM Rating r"),
+    @NamedQuery(name = "Rating.find", query = "SELECT r FROM Rating r WHERE r.id = :id"),
+    @NamedQuery(name = "Rating.findByMovie", query = "SELECT r FROM Rating r WHERE r.movie.title = :title")
 })
 public class Rating {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @OneToOne
     private Movie movie;
@@ -38,6 +42,17 @@ public class Rating {
     public Rating(long id, Movie movie, List<User> ratedBy, int currentRank) {
         this.id = id;
         this.movie = movie;
+        this.ratedBy = ratedBy;
+        this.currentRank = currentRank;
+    }
+    
+    public Rating(Movie movie, List<User> ratedBy, int currentRank) {
+        this.movie = movie;
+        this.ratedBy = ratedBy;
+        this.currentRank = currentRank;
+    }
+    
+    public Rating(List<User> ratedBy, int currentRank) {
         this.ratedBy = ratedBy;
         this.currentRank = currentRank;
     }
@@ -73,6 +88,5 @@ public class Rating {
     public void setCurrentRank(int currentRank) {
         this.currentRank = currentRank;
     }
-    
-    
+
 }
