@@ -24,6 +24,14 @@ public class ReservationDAO {
     @PersistenceContext
     EntityManager em;
 
+    public void createScreening(Screening screening) {
+        em.persist(screening);
+    }
+
+    public void updateScreening(Screening screeningA) {
+        em.merge(screeningA);
+    }
+
     public Screening getScreening(Long screeningId) {
         return em.find(Screening.class, screeningId);
     }

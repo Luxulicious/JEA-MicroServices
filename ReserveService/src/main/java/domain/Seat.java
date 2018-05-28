@@ -6,6 +6,8 @@
 package domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -19,6 +21,7 @@ import javax.persistence.ManyToOne;
 public class Seat {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long seatId;
     @ManyToOne
     private Screening screening;
@@ -38,8 +41,8 @@ public class Seat {
         this.screening = screening;
     }
 
-    public Seat(long seatId, boolean reserved, String reservedBy, boolean payed, int seatNumber) {
-        this.seatId = seatId;
+    public Seat(Screening screening, boolean reserved, String reservedBy, boolean payed, int seatNumber) {
+        this.screening = screening;
         this.reserved = reserved;
         this.reservedBy = reservedBy;
         this.payed = payed;
