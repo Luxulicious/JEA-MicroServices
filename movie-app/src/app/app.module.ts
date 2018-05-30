@@ -8,6 +8,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RatingComponent } from './rating/rating.component';
 import { ReserveComponent } from './reserve/reserve.component';
 import { AppRoutingModule } from './app-routing.module';
+import {UserService} from './services/user.service';
 
 
 @NgModule({
@@ -19,9 +20,12 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+      UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

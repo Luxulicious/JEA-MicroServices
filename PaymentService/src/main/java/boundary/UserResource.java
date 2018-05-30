@@ -6,13 +6,11 @@
 package boundary;
 
 import com.google.gson.GsonBuilder;
-import domain.User;
 import domain.dto.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.mail.MessagingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
