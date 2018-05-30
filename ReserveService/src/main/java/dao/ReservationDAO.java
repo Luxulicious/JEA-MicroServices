@@ -45,7 +45,7 @@ public class ReservationDAO {
         Screening screening = em.find(Screening.class, screeningId);
         List<Seat> seats = screening.getSeats();
         for (int i = 0; i < seats.size(); i++) {
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < seatNumbers.size(); j++) {
                 if (seats.get(i).getSeatNumber() == seatNumbers.get(j)) {
                     seats.get(i).setPayed(true);
                 }
@@ -59,7 +59,7 @@ public class ReservationDAO {
         Screening screening = em.find(Screening.class, screeningId);
         List<Seat> seats = screening.getSeats();
         for (int i = 0; i < seats.size(); i++) {
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < seatNumbers.size(); j++) {
                 if (seats.get(i).getSeatNumber() == seatNumbers.get(j)) {
                     seats.get(i).setReserved(true);
                     seats.get(i).setReservedBy(reservedBy);
