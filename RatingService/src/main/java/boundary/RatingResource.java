@@ -6,10 +6,16 @@
 package boundary;
 
 import com.google.gson.GsonBuilder;
+import dao.exceptions.NonExistingRatingException;
+import dao.exceptions.NonExistingUserException;
+import domain.Rating;
 import domain.dto.RatingDTO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,5 +39,39 @@ public class RatingResource {
     @Path("{id}")
     public Response getRating(@PathParam("id")long id){
         return Response.ok(gson.create().toJson(new RatingDTO(ratingService.find(id)))).build();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllRatings(){
+        List<RatingDTO> ratings = new ArrayList<>();
+        for(Rating r : ratingService.getAll()){
+            ratings.add(new RatingDTO(r));
+        }
+        return Response.ok(gson.create().toJson(ratings)).build();
+    }
+    
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("like/{movieTitle}/email/{email}")
+    public Response likeMovie(@PathParam("movieTitle") String movieTitle, @PathParam("email") String email){
+        try{
+            ratingService.likeMovie(movieTitle, email);
+        } catch (NonExistingRatingException | NonExistingUserException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
+        }
+        return Response.ok(gson.create().toJson("Movie rated")).build();
+    }
+    
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("dislike/{movieTitle}/email/{email}")
+    public Response dislikeMovie(@PathParam("movieTitle") String movieTitle, @PathParam("email") String email){
+        try{
+            ratingService.dislikeMovie(movieTitle, email);
+        } catch (NonExistingRatingException | NonExistingUserException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
+        }
+        return Response.ok(gson.create().toJson("Movie rated")).build();
     }
 }
