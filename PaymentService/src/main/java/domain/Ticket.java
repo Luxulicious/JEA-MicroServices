@@ -8,6 +8,8 @@ package domain;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -20,11 +22,13 @@ import javax.persistence.Temporal;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Ticket.getAll", query = "SELECT t FROM Ticket t"),
-@NamedQuery(name = "Ticket.find", query = "SELECT t FROM Ticket t WHERE t.id = :id")
+    @NamedQuery(name = "Ticket.getAll", query = "SELECT t FROM Ticket t"),
+    @NamedQuery(name = "Ticket.find", query = "SELECT t FROM Ticket t WHERE t.id = :id")
 })
 public class Ticket {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String movieTitle;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -47,6 +51,14 @@ public class Ticket {
         this.owner = owner;
     }
 
+    public Ticket(String movieTitle, Date startTime, Date endTime, List<Integer> seatNumbers, User owner) {
+        this.movieTitle = movieTitle;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.seatNumbers = seatNumbers;
+        this.owner = owner;
+    }
+
     public User getOwner() {
         return owner;
     }
@@ -54,7 +66,7 @@ public class Ticket {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    
+
     public long getId() {
         return id;
     }
