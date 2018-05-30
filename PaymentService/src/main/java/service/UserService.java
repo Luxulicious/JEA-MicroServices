@@ -6,12 +6,14 @@
 package service;
 
 import dao.UserDao;
+import domain.Ticket;
 import domain.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import service.exceptions.InvalidEmailException;
 import service.exceptions.InvalidNameException;
+import service.exceptions.NonExistingTicketException;
 
 /**
  *
@@ -22,6 +24,9 @@ public class UserService {
     @Inject
     private UserDao userDao;
     
+    @Inject
+    private TicketService ticketService;
+    
     public List<User> getAll(){
         return userDao.getAll();
     }
@@ -30,13 +35,18 @@ public class UserService {
         return userDao.find(email);
     }
     
-    public void sendEmail(String email, String name) throws InvalidEmailException, InvalidNameException{
+    public void sendEmail(String email, String name, long id) throws InvalidEmailException, InvalidNameException, NonExistingTicketException{
         if(email == null || email.isEmpty()){
             throw new InvalidEmailException("Invalid email.");
         }
         if(name == null || name.isEmpty()){
             throw new InvalidNameException("Invalid name.");
         }
-        userDao.sendEmail(email, name);
+        Ticket ticket = ticketService.find(id);
+        if(ticket == null){
+            throw new NonExistingTicketException("Ticket was not found.");
+        }
+        
+        userDao.sendEmail(email, name, ticket);
     }
 }

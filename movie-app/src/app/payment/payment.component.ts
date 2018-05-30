@@ -37,6 +37,7 @@ export class PaymentComponent implements OnInit {
 		},
 		onAuthorize: (data, actions) => {
 			return actions.payment.execute().then((payment) => {
+                            console.log('payment succeeded');
 				//Do something when payment is successful.
 			})
 		}

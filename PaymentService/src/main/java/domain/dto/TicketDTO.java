@@ -29,6 +29,8 @@ public class TicketDTO {
         this.seatNumbers = ticket.getSeatNumbers();
         this.ownerName = ticket.getOwner().getName();
     }
-    
+
+    public TicketDTO() {
+    }
     
 }
