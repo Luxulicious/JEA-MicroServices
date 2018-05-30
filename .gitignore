@@ -24,3 +24,10 @@ hs_err_pid*
 /ReserveService/target/
 /RatingService/target/
 /PaymentService/target/
+/movie-app/nbproject/private/
+movie-app/nbproject/project.properties
+movie-app/nbproject/project.xml
+PaymentService/nb-configuration.xml
+RatingService/src/main/java/org/netbeans/rest/application/config/ApplicationConfig.java
+PaymentService/nb-configuration.xml
+RatingService/src/main/java/org/netbeans/rest/application/config/ApplicationConfig.java
