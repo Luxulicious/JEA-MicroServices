@@ -39,4 +39,8 @@ public class UserDao {
         Query query = em.createNamedQuery("User.find");
         return (User) query.setParameter("email", email).getSingleResult();
     }
+    
+    public void sendEmail(String email, String name){
+        
+    }
 }

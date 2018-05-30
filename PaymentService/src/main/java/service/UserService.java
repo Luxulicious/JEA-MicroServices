@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package service;
+
+import dao.UserDao;
+import domain.User;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import service.exceptions.InvalidEmailException;
+import service.exceptions.InvalidNameException;
+
+/**
+ *
+ * @author Tomt
+ */
+@Stateless
+public class UserService {
+    @Inject
+    private UserDao userDao;
+    
+    public List<User> getAll(){
+        return userDao.getAll();
+    }
+    
+    public User find(String email){
+        return userDao.find(email);
+    }
+    
+    public void sendEmail(String email, String name) throws InvalidEmailException, InvalidNameException{
+        if(email == null || email.isEmpty()){
+            throw new InvalidEmailException("Invalid email.");
+        }
+        if(name == null || name.isEmpty()){
+            throw new InvalidNameException("Invalid name.");
+        }
+        userDao.sendEmail(email, name);
+    }
+}
