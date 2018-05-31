@@ -6,7 +6,6 @@
 package boundary;
 
 import com.google.gson.GsonBuilder;
-import domain.User;
 import domain.dto.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ import javax.ws.rs.core.Response;
 import service.UserService;
 import service.exceptions.InvalidEmailException;
 import service.exceptions.InvalidNameException;
+import service.exceptions.NonExistingTicketException;
 
 /**
  *
@@ -45,17 +45,18 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(){
         List<UserDTO> users = new ArrayList<>();
-        for(User user: userService.getAll()){
-            users.add(new UserDTO(user));
+        for(int i=0; i < userService.getAll().size(); i++){
+            users.add(new UserDTO(userService.getAll().get(i)));
         }
         return Response.ok(gson.create().toJson(users)).build();
     }
     
-    @Path("mail/{email}/{name}")
-    public Response sendEmail(@PathParam("email")String email, @PathParam("name")String name){
+    @GET
+    @Path("mail/{email}/{name}/{id}")
+    public Response sendEmail(@PathParam("email")String email, @PathParam("name")String name, @PathParam("id") long id){
         try {
-            userService.sendEmail(email, name);
-        } catch (InvalidEmailException | InvalidNameException ex) {
+            userService.sendEmail(email, name, id);
+        } catch (InvalidEmailException | InvalidNameException | NonExistingTicketException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
         }
         return Response.ok(gson.create().toJson("Email sent.")).build();

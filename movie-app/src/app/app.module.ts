@@ -1,8 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-
-
 import {AppComponent} from './app.component';
 import {PaymentComponent} from './payment/payment.component';
 import {RatingComponent} from './rating/rating.component';
@@ -15,10 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {ReservationService} from './services/reservation.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
-
-
+import {UserService} from './services/user.service';
 
 
 @NgModule({
@@ -39,7 +34,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         MatInputModule,
         BrowserAnimationsModule
     ],
-    providers: [ReservationService],
+    providers: [ReservationService, UserService],
     bootstrap: [AppComponent]
+
 })
 export class AppModule {}

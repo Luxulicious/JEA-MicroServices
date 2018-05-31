@@ -25,5 +25,8 @@ public class UserDTO {
             this.tickets.add(new TicketDTO(ticket));
         }
     }
+
+    public UserDTO() {
+    }
     
 }
