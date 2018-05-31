@@ -24,6 +24,10 @@ public class ReservationService {
     @Inject
     private ReservationDAO reservationDAO;
 
+    public List<Screening> getAllScreenings() {
+        return reservationDAO.getAllScreenings();
+    }
+
     public void reserve(Long screeningId, List<Integer> seatNumbers, String reservedBy) throws Exception {
         checkAvailableScreening(screeningId);
         checkAvailableSeats(screeningId, seatNumbers);

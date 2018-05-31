@@ -1,3 +1,16 @@
-<p>
-  reserve works!
-</p>
+<mat-card>
+    <mat-card-title>
+        <h3>Choose a screening!</h3>
+    </mat-card-title>
+    <form>
+        <mat-form-field>        
+            <mat-select placeholder="Select a screening!" 
+                        [(ngModel)]="selectedScreening" name="selectedScreening">
+                <mat-option *ngFor="let screening of screenings" [value]="screening.value">
+                    {{screening.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <p> Selected value: {{selectedValue}} </p>
+</form> 
+</mat-card>

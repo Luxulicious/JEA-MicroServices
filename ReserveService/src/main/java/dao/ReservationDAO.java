@@ -28,6 +28,10 @@ public class ReservationDAO {
         em.persist(screening);
     }
 
+    public List<Screening> getAllScreenings() {
+        return em.createQuery("SELECT s FROM Screening s").getResultList();
+    }
+
     public void updateScreening(Screening screeningA) {
         em.merge(screeningA);
     }

@@ -6,6 +6,7 @@
 package boundary;
 
 import com.google.gson.GsonBuilder;
+import domain.Screening;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -51,7 +52,7 @@ public class ReservationResource {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("markaspayed")
+    @Path("markAsPayed")
     public Response markAsPayed(ReservationDTO reservationDTO) {
         try {
             reservationService.markAsPayed(reservationDTO.screeningId, reservationDTO.seatNumbers);
@@ -59,5 +60,17 @@ public class ReservationResource {
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
         }
         return Response.ok().build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getAllScreenings")
+    public Response getAllScreenings() {
+        List<ScreeningDTO> entity = new ArrayList<>();
+        List<Screening> screenings = reservationService.getAllScreenings();
+        for (Screening screening : screenings) {
+            entity.add(new ScreeningDTO(screening));
+        }
+        return Response.ok(gson.create().toJson(entity)).build();
     }
 }
