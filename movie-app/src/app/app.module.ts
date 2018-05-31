@@ -14,6 +14,9 @@ import {FormsModule} from '@angular/forms';
 import {ReservationService} from './services/reservation.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserService} from './services/user.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import {UserService} from './services/user.service';
     ],
     imports: [
         BrowserModule,
+        MatButtonModule,
         HttpClientModule,
         AppRoutingModule,
         MatSelectModule,
@@ -32,7 +36,8 @@ import {UserService} from './services/user.service';
         MatCardModule,
         FormsModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatCheckboxModule
     ],
     providers: [ReservationService, UserService],
     bootstrap: [AppComponent]

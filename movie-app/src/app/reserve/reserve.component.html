@@ -3,14 +3,24 @@
         <h3>Choose a screening!</h3>
     </mat-card-title>
     <form>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="name"/>
+        </mat-form-field>
         <mat-form-field>        
-            <mat-select placeholder="Select a screening!" 
-                        [(ngModel)]="selectedScreening" name="selectedScreening">
-                <mat-option *ngFor="let screening of screenings" [value]="screening.value">
+            <mat-select placeholder="Select a screening." 
+                        [(ngModel)]="selectedScreening" name="selectedScreening" (change)="changedScreening()">
+                <mat-option *ngFor="let screening of screeningsSelect" [value]="screening.value">
                     {{screening.viewValue}}
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <p> Selected value: {{selectedValue}} </p>
+    <div *ngIf="isScreeningSelected()">
+        <div *ngFor="let seat of seatOptions">
+            <mat-checkbox [disabled]="seat.reserved" (change)="handleSeatChange(seat.seatId)"> 
+                Seatnumber: {{seat.seatNumber}}
+            </mat-checkbox>
+        </div>
+    </div>
+    <button mat-raised-button (click)="reserve()">Make reservation</button>
 </form> 
 </mat-card>
