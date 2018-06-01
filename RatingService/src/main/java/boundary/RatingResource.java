@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import dao.exceptions.NonExistingRatingException;
 import dao.exceptions.NonExistingUserException;
 import domain.Rating;
+import domain.dto.NewRatingDTO;
 import domain.dto.RatingDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +54,10 @@ public class RatingResource {
     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("like/{movieTitle}/email/{email}")
-    public Response likeMovie(@PathParam("movieTitle") String movieTitle, @PathParam("email") String email){
+    @Path("like")
+    public Response likeMovie(NewRatingDTO newRatingDTO){
         try{
-            ratingService.likeMovie(movieTitle, email);
+            ratingService.likeMovie(newRatingDTO.movieTitle, newRatingDTO.email);
         } catch (NonExistingRatingException | NonExistingUserException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
         }
@@ -65,10 +66,10 @@ public class RatingResource {
     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("dislike/{movieTitle}/email/{email}")
-    public Response dislikeMovie(@PathParam("movieTitle") String movieTitle, @PathParam("email") String email){
+    @Path("dislike")
+    public Response dislikeMovie(NewRatingDTO newRatingDTO){
         try{
-            ratingService.dislikeMovie(movieTitle, email);
+            ratingService.dislikeMovie(newRatingDTO.movieTitle, newRatingDTO.email);
         } catch (NonExistingRatingException | NonExistingUserException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.create().toJson(ex.getMessage())).build();
         }

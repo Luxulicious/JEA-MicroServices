@@ -15,6 +15,7 @@ import {ReservationService} from './services/reservation.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserService} from './services/user.service';
 import {PaymentService} from './services/payment.service';
+import {RatingService} from './services/rating.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -40,7 +41,7 @@ import {MatButtonModule} from '@angular/material/button';
         BrowserAnimationsModule,
         MatCheckboxModule
     ],
-    providers: [ReservationService, UserService, PaymentService],
+    providers: [ReservationService, UserService, PaymentService, RatingService],
     bootstrap: [AppComponent]
 
 })

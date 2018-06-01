@@ -16,6 +16,6 @@ export class PaymentService {
     public markAsPayed() {
         const url: string = this.baseUrl + "markAsPayed";
         const headers: HttpHeaders = new HttpHeaders();
-        return this.httpClient.put(url, {screeningId: this.screeningId, seatNumbers: this.seatNumbers, reservedBy: this.reservedBy}, {headers: headers})
+        return this.httpClient.put(url, {screeningId: this.screeningId, seatNumbers: this.seatNumbers, reservedBy: this.reservedBy}, {headers: headers});
     }
 }

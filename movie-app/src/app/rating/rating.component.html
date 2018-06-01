@@ -1,3 +1,15 @@
-<p>
-  rating works!
-</p>
+<mat-card>
+    <mat-card-title>
+        <h3>Rate a movie!</h3>
+    </mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Movie title" name="movieTitle" [(ngModel)]="movieTitle"/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email"/>
+        </mat-form-field>
+        <button mat-raised-button (click)="like()">Like this movie</button>
+        <button mat-raised-button (click)="dislike()">Dislike this movie</button>
+    </form>
+</mat-card>
