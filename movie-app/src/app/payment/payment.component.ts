@@ -12,7 +12,7 @@ export class PaymentComponent implements OnInit {
 
     addScript: boolean = false;
     paypalLoad: boolean = true;
-
+    paymentSuccess: boolean = false;
     finalAmount: number = 10;
 
     constructor(private userService: UserService) {}
@@ -46,8 +46,8 @@ export class PaymentComponent implements OnInit {
         onAuthorize: (data, actions) => {
             return actions.payment.execute().then((payment) => {
                 console.log('payment succeeded');
+                this.paymentSuccess = true;
                 this.sendMail();
-                //Do something when payment is successful.
             })
         }
     };

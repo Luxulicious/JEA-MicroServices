@@ -1,7 +1,9 @@
 <div>
     <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
-    <div id="paypal-checkout-btn">
-        
+    <div id="paypal-checkout-btn"></div>
+    <div *ngIf="paymentSuccess">
+        <br>
+        Payment success, you have received an email with your ticket. Enjoy!
     </div>
 </div>
 

@@ -22,5 +22,11 @@
         </div>
     </div>
     <button mat-raised-button (click)="reserve()">Make reservation</button>
+    <div *ngIf="reservationSuccess">
+        <br>
+        Thank you for making a reservation. <br><br>
+        Pay now! <br><br>
+        <app-payment></app-payment>
+    </div>
 </form> 
 </mat-card>

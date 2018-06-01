@@ -22,6 +22,7 @@ export class ReserveComponent implements OnInit {
     private seatOptions: Seat[] = [];
     private selectedSeats: Seat[] = [];
     private name: string = "";
+    private reservationSuccess: boolean = false;
 
     private reserve(): void {
         let seatNumbers: number[] = [];
@@ -30,9 +31,10 @@ export class ReserveComponent implements OnInit {
         }
         this.reservationService.reserve(this.selectedScreening.id, seatNumbers, this.name)
             .subscribe(response => {
-                //TODO Show success page or give the option to pay ahead of time
+                this.reservationSuccess = true;
             },
                 error => {
+                    this.reservationSuccess = false;
                     console.log(error);
                 });
     }

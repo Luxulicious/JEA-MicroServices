@@ -1,0 +1,2 @@
+java -jar payara-micro.jar --deploy .\ReserveService\target\ReserveService-1.0-SNAPSHOT.war --deploy .\RatingService\target\RatingService-1.0-SNAPSHOT.war --deploy .\PaymentService\target\PaymentService-1.0-SNAPSHOT.war --addLibs mysql-connector-java-5.1.38.jar --port 1240 
+pause 
