@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Screening} from '../models/screening';
 import {ReservationService} from '../services/reservation.service';
+import {PaymentService} from '../services/payment.service';
 import {Seat} from '../models/seat';
 
 @Component({
@@ -10,7 +11,7 @@ import {Seat} from '../models/seat';
 })
 export class ReserveComponent implements OnInit {
 
-    constructor(private reservationService: ReservationService) {}
+    constructor(private reservationService: ReservationService, private paymentService: PaymentService) {}
 
     ngOnInit() {
         this.getAllScreenings();
@@ -29,6 +30,9 @@ export class ReserveComponent implements OnInit {
         for (let i = 0; i < this.selectedSeats.length; i++) {
             seatNumbers.push(this.selectedSeats[i].seatNumber);
         }
+        this.paymentService.reservedBy = this.name;
+        this.paymentService.seatNumbers = seatNumbers;
+        this.paymentService.screeningId = this.selectedScreening.id;
         this.reservationService.reserve(this.selectedScreening.id, seatNumbers, this.name)
             .subscribe(response => {
                 this.reservationSuccess = true;

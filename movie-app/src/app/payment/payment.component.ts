@@ -1,5 +1,6 @@
 import {Component, OnInit, AfterViewChecked} from '@angular/core';
 import {UserService} from '../services/user.service';
+import {PaymentService} from '../services/payment.service';
 
 declare let paypal: any;
 
@@ -15,7 +16,7 @@ export class PaymentComponent implements OnInit {
     paymentSuccess: boolean = false;
     finalAmount: number = 10;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private paymentService: PaymentService) {}
 
     ngOnInit() {
     }
@@ -47,6 +48,13 @@ export class PaymentComponent implements OnInit {
             return actions.payment.execute().then((payment) => {
                 console.log('payment succeeded');
                 this.paymentSuccess = true;
+                this.paymentService.markAsPayed()
+                    .subscribe(response => {
+                        console.log("Marked as payed");
+                    },
+                    error => {
+                        console.log(error);
+                    });
                 this.sendMail();
             })
         }
