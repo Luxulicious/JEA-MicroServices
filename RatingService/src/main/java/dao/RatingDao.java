@@ -48,12 +48,14 @@ public class RatingDao {
     
     public void likeMovie(Rating rating, User user){
         rating.getRatedBy().add(user);
+        rating.setCurrentRank(rating.getCurrentRank()+1);
         update(rating);
         save(rating);
     }
     
     public void dislikeMovie(Rating rating, User user){
         rating.getRatedBy().remove(user);
+        rating.setCurrentRank(rating.getCurrentRank()-1);
         update(rating);
         save(rating);
     }
