@@ -63,16 +63,21 @@ public class ReservationService {
         checkAnySeats(seats);
         checkDuplicateSeats(seatNumbers);
         checkNonExistantSeats(seatNumbers, seats);
-        checkOccupiedSeats(seats);
+        checkOccupiedSeats(seatNumbers, screeningId);
 
     }
 
-    private void checkOccupiedSeats(List<Seat> seats) throws Exception {
+    private void checkOccupiedSeats(List<Integer> seatNumbers, Long screeningId) throws Exception {
+        List<Seat> seats = reservationDAO.getScreeningSeats(screeningId);
         //Check for occupied seats
         List<Seat> occupiedSeats = new ArrayList<>();
         for (Seat seat : seats) {
             if (seat.isReserved()) {
-                occupiedSeats.add(seat);
+                for (Integer seatNumber : seatNumbers) {
+                    if (seat.getSeatNumber() == seatNumber) {
+                        occupiedSeats.add(seat);
+                    }
+                }
             }
         }
         if (occupiedSeats.size() > 0) {
