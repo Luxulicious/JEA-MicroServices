@@ -21,4 +21,10 @@ export class RatingService {
         const headers: HttpHeaders = new HttpHeaders();
         return this.httpClient.put(url, {movieTitle: movieTitle, email: email}, {headers: headers});
     }
+    
+    public getAll(): Observable<any>{
+        const url: string = this.baseUrl;
+        return this.httpClient.get<any>(url);
+    }
+    
 }

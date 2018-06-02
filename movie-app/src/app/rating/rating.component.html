@@ -13,3 +13,21 @@
         <button mat-raised-button (click)="dislike()">Dislike this movie</button>
     </form>
 </mat-card>
+<mat-card>
+    <table>
+        <thead>
+            <tr>
+                <th>Movie title</th>
+                <th>Current rank</th>
+                <th>Number of users rated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rating of ratings; let i = index">
+                <td>{{rating.movieTitle}}</td>
+                <td>{{rating.currentRank}}</td>
+                <td>{{rating.numberOfUsersRated}}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

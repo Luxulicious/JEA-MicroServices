@@ -17,13 +17,13 @@ import java.util.List;
 public class RatingDTO {
     public String movieTitle;
     public int currentRating;
-    public List<UserDTO> ratedBy = new ArrayList<>();
+    public int numberOfUsersRated = 0;
 
     public RatingDTO(Rating rating) {
         this.movieTitle = rating.getMovie().getTitle();
         this.currentRating = rating.getCurrentRank();
         for (User u: rating.getRatedBy()){
-            this.ratedBy.add(new UserDTO(u));
+            this.numberOfUsersRated++;
         }
     }
 }

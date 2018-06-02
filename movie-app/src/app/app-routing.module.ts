@@ -5,7 +5,7 @@ import {ReserveComponent} from './reserve/reserve.component';
 import {RatingComponent} from './rating/rating.component';
 
 const routes: Routes = [
-    //{path: '', redirectTo: '/reserve', pathMatch: 'full'},
+    {path: '', redirectTo: '/reserve', pathMatch: 'full'},
     {path: 'reserve', component: ReserveComponent},
     {path: 'rating', component: RatingComponent},
     {path: 'payment', component: PaymentComponent}
